@@ -55,18 +55,23 @@ local function GetCloverParts()
 end
 
 -- Toggle auto collect clover
-_G.CloverToggleEnabled = false
+local CloverToggleEnabled = false
 Event:AddToggle({
     Name = "🍀 AUTO Collect Clover 🍀 ",
     Default = false,
     Callback = function(toggleState)
-        _G.CloverToggleEnabled = toggleState
-        while _G.CloverToggleEnabled do 
+        CloverToggleEnabled = toggleState
+        while CloverToggleEnabled do 
             local CloverParts = GetCloverParts()
             for _, MeshPart in pairs(CloverParts) do
-                firetouchinterest(game.Players.LocalPlayer.Character.Head, MeshPart, 0)
+                local distance = (MeshPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+                if distance <= 10 then -- Nếu khoảng cách giữa part của Clover và nhân vật nhỏ hơn hoặc bằng 10 thì di chuyển nhân vật đến part và thu thập
+                    game.Players.LocalPlayer.Character.Humanoid:MoveTo(MeshPart.Position)
+                    wait(1)
+                    firetouchinterest(game.Players.LocalPlayer.Character.Head, MeshPart, 0)
+                end
             end
-            wait(1) -- Thời gian chờ giữa mỗi lần touch interest lại các Part của Clover
+            wait(1) -- Thời gian chờ giữa mỗi lần thu thập các part của Clover
         end
     end
 })
