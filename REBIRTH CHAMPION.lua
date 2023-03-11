@@ -41,6 +41,7 @@ if game.PlaceId == 8540346411 then
     })
     
 -- Hàm lấy danh sách part của clover
+-- Hàm lấy danh sách part của clover
 local function GetCloverParts()
     local parts = {}
     for _, CloverModel in pairs(game.Workspace.Scripts.CollectClovers.Storage:GetChildren()) do
@@ -55,18 +56,21 @@ local function GetCloverParts()
     return parts
 end
 
-
 -- Toggle auto collect clover
 local CloverToggleEnabled = false
-Event:AddButton({
+Event:AddToggle({
     Name = "🍀 AUTO Collect Clover 🍀 ",
     Default = false,
-    Callback = function()
+    Callback = function(toggleState)
+        CloverToggleEnabled = toggleState
+        while CloverToggleEnabled do 
             local CloverParts = GetCloverParts()
             for _, MeshPart in pairs(CloverParts) do
+                print("Touching", MeshPart.Name) -- In ra thông báo để kiểm tra lỗi
                 firetouchinterest(game.Players.LocalPlayer.Character.Head, MeshPart, 0)
             end
             wait(1) -- Thời gian chờ giữa mỗi lần touch interest lại các Part của Clover
+        end
     end
 })
 
