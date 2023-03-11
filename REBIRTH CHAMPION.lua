@@ -38,7 +38,6 @@ if game.PlaceId == 8540346411 then
     local Section = Event:AddSection({
         Name = "🍀 AUTO Collect Clover 🍀 "
     })
--- Toggle auto collect clover
 -- Hàm lấy danh sách part của clover
 local function GetCloverParts()
     local parts = {}
@@ -64,22 +63,13 @@ Event:AddToggle({
         while CloverToggleEnabled do 
             local CloverParts = GetCloverParts()
             for _, MeshPart in pairs(CloverParts) do
-                local distance = (MeshPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-                if distance <= 10 then -- Nếu khoảng cách giữa part của Clover và nhân vật nhỏ hơn hoặc bằng 10 thì di chuyển nhân vật đến part và thu thập
-                    game.Players.LocalPlayer.Character.Humanoid:MoveTo(MeshPart.Position)
-                    wait(1)
-                    firetouchinterest(game.Players.LocalPlayer.Character.Head, MeshPart, 0)
-                end
+                firetouchinterest(game.Players.LocalPlayer.Character.Head, MeshPart, 0)
             end
-            wait(1) -- Thời gian chờ giữa mỗi lần thu thập các part của Clover
+            wait(1) -- Thời gian chờ giữa mỗi lần touch interest lại các Part của Clover
         end
     end
 })
 
-
-    
-    
-    
     else
     Yutohub:MakeNotification({
         Name = "DONT SUPPORT THIS GAME",
