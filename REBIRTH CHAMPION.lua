@@ -41,64 +41,26 @@ if game.PlaceId == 8540346411 then
     })
     
 -- Hàm lấy danh sách part của clover
-local function GetCloverParts()
-    local parts = {}
-    for _, CloverModel in pairs(game.Workspace.Scripts.CollectClovers.Storage:GetChildren()) do
-        if CloverModel:IsA("Model") and CloverModel.Name == "Clover" then
-            for _, part in pairs(CloverModel:GetDescendants()) do
-                if part:IsA("MeshPart") then
-                    table.insert(parts, part)
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local GetClovers = ReplicatedStorage:WaitForChild("GetClovers")
+
+Event:AddToggle({
+    Name = "🍀 AUTO PICKUP Clover 🍀 ",
+    Default = false,
+    Callback = function(toggleState)
+        CloverToggleEnabled = toggleState
+        while CloverToggleEnabled do 
+            -- Tương tác với tất cả các clover đang có
+            local clovers = GetClovers:InvokeServer()
+            for i, v in pairs(clovers) do
+                if v:IsA("MeshPart") then 
+                    firetouchinterest(game.Players.LocalPlayer.Character.Head, v, 0)
                 end
             end
+            wait(0.1)
         end
     end
-    return parts
-end
-
--- Toggle auto collect clover
-local Event = Window:MakeTab({
-    Name = "🍀 St.Patrick's Event 🍀",
-    Icon = "rbxassetid://12699767780",
-    PremiumOnly = false
 })
-local CloverToggleEnabled = false
-local Section = Event:AddSection({
-    Name = "🍀 AUTO Collect Clover 🍀 "
-})
-
-
--- Hàm lấy danh sách part của clover
-local function GetCloverParts()
-local parts = {}
-for _, CloverModel in pairs(game.Workspace.Scripts.CollectClovers.Storage:GetChildren()) do
-    if CloverModel:IsA("Model") and CloverModel.Name == "Clover" then
-        for _, part in pairs(CloverModel:GetDescendants()) do
-            if part:IsA("MeshPart") then
-                table.insert(parts, part)
-            end
-        end
-    end
-end
-return parts
-end
-
--- Toggle auto collect clover
-local CloverToggleEnabled = false
-Event:AddToggle({
-Name = "🍀 AUTO Collect Clover 🍀 ",
-Default = false,
-Callback = function(toggleState)
-    CloverToggleEnabled = toggleState
-    while CloverToggleEnabled do 
-        local CloverParts = GetCloverParts()
-        for _, MeshPart in pairs(CloverParts) do
-            firetouchinterest(game.Players.LocalPlayer.Character.Head, MeshPart, 0)
-        end
-        wait(1) -- Thời gian chờ giữa mỗi lần touch interest lại các Part của Clover
-    end
-end
-})
-
 
     
     
