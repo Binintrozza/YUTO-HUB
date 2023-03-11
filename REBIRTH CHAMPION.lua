@@ -1,1 +1,125 @@
-local v0=loadstring(game:HttpGet("https://raw.githubusercontent.com/Binintrozza/ev2evwvw/main/main.lua"))();Script=function()local v1=v0.CreateLib("💎[🐉UPDATE!] Rebirth Champions X💎 YUTO HUB","Serpent");local v2=v1:NewTab("💎MAIN💎");local v3=v2:NewSection("Main");local v4=false;v3:NewToggle("Auto click","help you farm click",function(v5)v4=v5;while v4 do local v104=game:GetService("ReplicatedStorage").Events.Click3;v104:FireServer();wait(0.01);end end);v3:NewButton("spin daily","will spin the wheel daily",function()local v46=game:GetService("ReplicatedStorage").Functions.Spin;v46:InvokeServer();end);local v6=math.random(1,5);v3:NewToggle("Auto claim Reward Daily","",function(v5)v4=v5;while v4 do local v105=PV;local v106=game:GetService("ReplicatedStorage").Events.DailyReward;v106:FireServer(v105);wait(1);end end);local function v7()local v47=game:GetService("VirtualUser");game:GetService("Players").LocalPlayer.Idled:connect(function()v47:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame);wait(1);v47:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame);end);end v7();local v8=v1:NewTab("🟢LOCAL PLAYER🟢");local v9=v8:NewSection("LOCAL PLAYER ");v9:NewSlider("Walkspeed","Changes how fast you walk.",250,16,function(v10)game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=v10;end);v9:NewSlider("JumpPower","Changes how fast you jump.",250,16,function(v10)game.Players.LocalPlayer.Character.Humanoid.JumpPower=v10;end);v9:NewKeybind("PRESS F FOR TOGGLE","KeybindInfo",Enum.KeyCode.F,function()v0:ToggleUI();end);local v11=v1:NewTab("🥚AUTO HATCH🥚");local v12=false;local v13=v11:NewSection(" 🚀 SPAWN MAP SELECT EGG 🚀");local v14="Forest";local v16=v13:NewDropdown("EGG SELECT","DropdownInf",{"Forest","Basic","Mythic","Atlantis","Desert","Winter","Volcano","Magma","Moon","Cyber","Magic","Heaven","Nuclear","Void","Spooky","Cave","Steampunk","Hell"},function(v15)v14=v15;print(v15);end);local v17=v13:NewToggle("🚀 Auto Egg SPAWN Select 🚀","auto Hatch egg select",function(v5)v12=v5;while v12 do local v107=v14;local v108="Triple";local v109=game:GetService("ReplicatedStorage").Functions.Unbox;v109:InvokeServer(v107,v108);wait(0.1);end end);local v13=v11:NewSection("🚀 SPACE MAP SELECT EGG 🚀");local v18="Space";local v16=v13:NewDropdown("EGG SELECT","DropdownInf",{"Space","Mars","Alien","Galaxy Forest","Spacelab","Fantasy","Neon","Shadow","Dectruction","Sun","Saturn","Hacker","Black Hole"},function(v15)v18=v15;print(v15);end);local v17=v13:NewToggle("🚀 Auto Egg SPACE Select 🚀","auto Hatch egg select",function(v5)v12=v5;while v12 do local v110=v18;local v111="Triple";local v112=game:GetService("ReplicatedStorage").Functions.Unbox;v112:InvokeServer(v110,v111);wait(0.1);end end);local v13=v11:NewSection("🌊 OCEAN MAP SELECT EGG 🌊");local v19="Axolotl";local v16=v13:NewDropdown("EGG SELECT","DropdownInf",{"Aqua","Axolotl","Underwater Lab","Pixel","Sea Cave","Acient","Pirate","Exotic Island","Fishing Village","Ocean","Motlen","Saturn","Hacker","Black Hole"},function(v15)v19=v15;print(v15);end);local v17=v13:NewToggle("🌊 Auto Egg OCEAN Select 🌊 ","auto Hatch egg select",function(v5)v12=v5;while v12 do local v113=v19;local v114="Triple";local v115=game:GetService("ReplicatedStorage").Functions.Unbox;v115:InvokeServer(v113,v114);wait(0.1);end end);local v13=v11:NewSection("🌴 Jungle MAP SELECT EGG 🌴");local v20="Fantasy Spawn";local v16=v13:NewDropdown("EGG SELECT","DropdownInf",{"Fantasy Spawn","Fantasy Jungle","Dragon"},function(v15)v20=v15;print(v15);end);local v17=v13:NewToggle("🌴 Auto Egg Jungle Select 🌴 ","auto Hatch egg select",function(v5)v12=v5;while v12 do local v116=v20;local v117="Triple";local v118=game:GetService("ReplicatedStorage").Functions.Unbox;v118:InvokeServer(v116,v117);wait(0.1);end end);local v21=v1:NewTab("🔃AUTO REBIRTH🔃");local v22=v21:NewSection("🔃AUTO REBIRTH🔃");local v23=false;local v24={[1]="1 Rebirth",[2]="5 Rebirth",[3]="10 Rebirth",[4]="25 Rebirth",[5]="100 Rebirth",[6]="500 Rebirth",[7]="2K5 Rebirth",[8]="5K Rebirth",[9]="10K Rebirth",[10]="50k Rebirth",[11]="250K Rebirth",[12]="1M Rebirth",[13]="25M Rebirth",[14]="100M Rebirth",[15]="500M Rebirth ",[16]="1B Rebirth ",[17]="2.5B Rebirth ",[18]="10B Rebirth ",[19]="250B Rebirth ",[20]="1T Rebirth ",[21]="10T Rebirth ",[22]="25T Rebirth ",[23]="100T Rebirth ",[24]="250T Rebirth ",[25]="1Qd Rebirth ",[26]="2.5Qd Rebirth ",[27]="10Qd Rebirth ",[28]="50Qd Rebirth ",[29]="250Qd Rebirth ",[30]="1Qn Rebirth",[31]="5Qn Rebirth",[32]="50Qn Rebirth",[33]="100Qn Rebirth",[34]="500Qn Rebirth",[35]="1Sx Rebirth",[36]="5Sx Rebirth",[37]="10Sx Rebirth",[38]="24.99Sx Rebirth",[39]="99.99Sx Rebirth",[40]="500Sx Rebirth",[41]="1Sp Rebirth",[42]="2.5Sp Rebirth",[43]="10Sp Rebirth",[44]="25Sp Rebirth",[45]="100Sp Rebirth",[46]="250Sp Rebirth",[47]="1O Rebirth",[48]="2.5O Rebirth",[49]="10O Rebirth",[50]="24.99O Rebirth",[51]="99.99O Rebirth",[52]="250O Rebirth",[53]="1N Rebirth",[54]="2.5N Rebirth",[55]="10N Rebirth",[56]="25N Rebirth",[57]="100N Rebirth",[58]="249.99N Rebirth",[59]="1de Rebirth",[60]="2.5de Rebirth",[61]="10de Rebirth",[62]="25de Rebirth",[63]="100de Rebirth",[64]="250de Rebirth",[65]="1Ud Rebirth",[66]="2.5Ud Rebirth",[67]="10Ud Rebirth",[68]="25Ud Rebirth",[69]="100Ud Rebirth",[70]="249.99Ud Rebirth",[71]="1DD Rebirth",[72]="2.5DD Rebirth",[73]="10DD Rebirth",[74]="25DD Rebirth",[75]="100DD Rebirth",[76]="250DD Rebirth",[77]="1tdD Rebirth",[78]="2.5tdD Rebirth",[79]="10tdD Rebirth",[80]="25tdD Rebirth",[81]="100tdD Rebirth",[82]="249.99tdD Rebirth",[83]="1qdD Rebirth",[84]="2.5qdD Rebirth",[85]="10qD Rebirth",[86]="25qdD Rebirth",[87]="100qdD Rebirth",[88]="250qdD Rebirth",[89]="1QnD Rebirth",[90]="2.49QnD Rebirth",[91]="9.99QnD Rebirth",[92]="25QnD Rebirth",[93]="100QnD Rebirth",[94]="250QnD Rebirth",[95]="1sxD Rebirth",[96]="2.5sx DRebirth",[97]="10sxD Rebirth",[98]="25sxD Rebirth "};v22:NewDropdown("Rebirth select","Select which for rebirth",v24,function(v15)itr=v15;local v50=v24[itr];print(v50);end);v22:NewToggle("Auto rebirth ","That will auto rebirth",function(v5)v23=v5;while v23 do local v119=itr;local v120=game:GetService("ReplicatedStorage").Events.Rebirth;v120:FireServer(v119);wait(1);end end);local v25=v1:NewTab("SHOP BOOST🏪");local v26=v25:NewSection("Select BOOST🏪");local v27="x2Gems";v26:NewDropdown("Boost select","SELECT BOOST TO BUY",{"x2Gems","x2Luck","x2PetXP","x2HatchSpeed","x2Rebirths"},function(v15)v27=v15;print(v15);end);v26:NewButton("Buy x1 BOOST🏪 you select","That will buy 1 thing",function()local v51=v27;local v52=1;local v53=game:GetService("ReplicatedStorage").Events.Potion;v53:FireServer(v51,v52);end);v26:NewButton("Buy x10 BOOST🏪 you select","That will buy 10 things",function()local v54=v27;local v55=10;local v56=game:GetService("ReplicatedStorage").Events.Potion;v56:FireServer(v54,v55);end);v26:NewButton("Buy x100 BOOST🏪 you select","That will buy 100 things",function()local v57=v27;local v58=100;local v59=game:GetService("ReplicatedStorage").Events.Potion;v59:FireServer(v57,v58);end);local v28=v25:NewSection("Select BOOST AQUA Map🌊");local v29="x3Gems";v28:NewDropdown("Boost AQua select","DropdownInf",{"x3Clicks","x3Gems","x3PetLevel","x3Rebirths"},function(v15)v29=v15;print(v15);end);v28:NewButton("Buy x1 BOOST AQUA Map🌊 you select","That will buy 1 thing",function()local v60=v29;local v61=1;local v62="aqua";local v63=game:GetService("ReplicatedStorage").Events.Potion;v63:FireServer(v60,v61,v62);end);v28:NewButton("Buy x10 BOOST AQUA Map🌊 you select","That will buy 10 things",function()local v64=v29;local v65=10;local v66="aqua";local v67=game:GetService("ReplicatedStorage").Events.Potion;v67:FireServer(v64,v65,v66);end);v28:NewButton("Buy x100 BOOST AQUA Map🌊 you select","That will buy 100 things",function()local v68=v29;local v69=100;local v70="aqua";local v71=game:GetService("ReplicatedStorage").Events.Potion;v71:FireServer(v68,v69,v70);end);local v30=v1:NewTab("🐶Pet Option🐶");local v31=v30:NewSection(" ⚒️ Auto Craft Pet ⚒️");local v32=false;v31:NewToggle("⚒️ Auto craft all ⚒️","Auto craft all",function(v5)v32=v5;while v32 do local v121="CraftAll";local v122={};local v123=game:GetService("ReplicatedStorage").Functions.Request;v123:InvokeServer(v121,v122);wait(1);end end);local v31=v30:NewSection(" 🗑️ AUTO DELETE Pet 🗑️");local v33=false;v31:NewToggle("🗑️ Auto Delete Common Pet 🗑️","AUTO DELETE Common",function(v5)v33=v5;while v33 do local v124="Common";local v125=true;local v126=game:GetService("ReplicatedStorage").Events.AutoDelete;v126:FireServer(v124,v125);wait(1);end local v72="Common";local v73=false;local v74=game:GetService("ReplicatedStorage").Events.AutoDelete;v74:FireServer(v72,v73);end);v31:NewToggle("🗑️ Auto Delete Uncommon Pet 🗑️","AUTO DELETE UnCommon",function(v5)v33=v5;while v33 do local v127="Uncommon";local v128=true;local v129=game:GetService("ReplicatedStorage").Events.AutoDelete;v129:FireServer(v127,v128);wait(1);end local v75="Uncommon";local v76=false;local v77=game:GetService("ReplicatedStorage").Events.AutoDelete;v77:FireServer(v75,v76);end);v31:NewToggle("🗑️ Auto Delete Rare Pet 🗑️","AUTO DELETE Rare",function(v5)v33=v5;while v33 do local v130="Rare";local v131=true;local v132=game:GetService("ReplicatedStorage").Events.AutoDelete;v132:FireServer(v130,v131);wait(1);end local v78="Rare";local v79=false;local v80=game:GetService("ReplicatedStorage").Events.AutoDelete;v80:FireServer(v78,v79);end);v31:NewToggle("🗑️ Auto Delete Epic Pet 🗑️","AUTO DELETE Epic",function(v5)v33=v5;while v33 do local v133="Epic";local v134=true;local v135=game:GetService("ReplicatedStorage").Events.AutoDelete;v135:FireServer(v133,v134);wait(1);end local v81="Epic";local v82=false;local v83=game:GetService("ReplicatedStorage").Events.AutoDelete;v83:FireServer(v81,v82);end);v31:NewToggle("🗑️ Auto Delete Legendary Pet 🗑️","AUTO DELETE Legendary ",function(v5)v33=v5;while v33 do local v136="Legendary";local v137=true;local v138=game:GetService("ReplicatedStorage").Events.AutoDelete;v138:FireServer(v136,v137);wait(1);end local v84="Legendary";local v85=false;local v86=game:GetService("ReplicatedStorage").Events.AutoDelete;v86:FireServer(v84,v85);end);v31:NewToggle("🗑️ Auto Delete Mythical pet 🗑️","AUTO DELETE Mythical",function(v5)v33=v5;while v33 do local v139="Mythical";local v140=true;local v141=game:GetService("ReplicatedStorage").Events.AutoDelete;v141:FireServer(v139,v140);wait(1);end local v87="Mythical";local v88=false;local v89=game:GetService("ReplicatedStorage").Events.AutoDelete;v89:FireServer(v87,v88);end);local v34=v1:NewTab("🌠GUI OPEN🌠");local v35=v34:NewSection(" 🚀 GUI MAP SPAWN 🚀");local v36={["Tap Skins"]=Vector3.new(271,5,96),Upgrades=Vector3.new(192,5,110),Index=Vector3.new(267,5,25),Auras=Vector3.new( -49,8,640),["Pet Machine"]=Vector3.new( -73,37, -458)};local v37;v35:NewDropdown(" 🎸Select Gui to tele🎸 ","TELE AND PRESS E To Collect",{"Tap Skins","Upgrades","Index","Auras","Pet Machine"},function(v15)v37=v36[v15];print(v15);end);v35:NewButton("Tele TO GUi secrect","Teleport selected",function()if v37 then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame=CFrame.new(v37);end end);local v35=v34:NewSection(" 🚀 GUI MAP Space 🚀");local v36={["Pet Upgrader"]=Vector3.new(1809,19, -602),["Space Upgrades"]=Vector3.new(401,90, -1757),["Dectruction Machine"]=Vector3.new( -1095,30,430),["Evolution machine (Aqua)"]=Vector3.new( -2180,6, -756)};local v38;v35:NewDropdown(" 🎸Select Gui to tele🎸 ","TELE AND PRESS E To Collect",{"Pet Upgrader","Space Upgrades","Dectruction Machine","Evolution machine (Aqua)"},function(v15)v38=v36[v15];print(v15);end);v35:NewButton("Tele TO SPace GUi secrect","Teleport selected",function()if v38 then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame=CFrame.new(v38);end end);local v39=v1:NewTab("💎 Craft Amulet💎");local v40=v39:NewSection("🚀  Craft Amulet Spawn🚀 ");local v36={["MushRoom 1"]=Vector3.new( -391,33,213),["MushRoom 2"]=Vector3.new( -441,33,205),["MushRoom 3"]=Vector3.new(243,7,59),["MushRoom 4"]=Vector3.new( -478,33,187),["MushRoom 5"]=Vector3.new(371,8,20),["MushRoom 6"]=Vector3.new( -393,33,139),["MushRoom 7"]=Vector3.new(344, -51,116),["MushRoom 8"]=Vector3.new(163,8,127)};local v37;v40:NewDropdown("🍄 Select Mushroom Tele For Craft 🍄 ","TELE AND PRESS E To Collect",{"MushRoom 1","MushRoom 2","MushRoom 3","MushRoom 4","MushRoom 5","MushRoom 6","MushRoom 7","MushRoom 8"},function(v15)v37=v36[v15];print(v15);end);v40:NewButton("🍄Teleport MushRoom Select🍄","Teleport selected",function()if v37 then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame=CFrame.new(v37);end end);v40:NewButton("💎Craft Forest Amulet💎","Craft AMULET",function()local v93="Forest";local v94=game:GetService("ReplicatedStorage").Events.CraftAmulet;v94:FireServer(v93);end);local v40=v39:NewSection("🚀 Craft Amulet Space🚀 ");local v36={["Planet 1"]=Vector3.new( -762,37, -765),["Planet 2"]=Vector3.new( -1302,53, -802),["Planet 3"]=Vector3.new( -226, -50, -272),["Planet 4"]=Vector3.new(345,94, -2035),["Planet 5"]=Vector3.new(1006,43, -976),["Planet 6"]=Vector3.new(937,14, -309),["Planet 7"]=Vector3.new( -1625,31,6),["Planet 8"]=Vector3.new( -1431,32,685)};local v41;v40:NewDropdown("🌠 Select Planet Tele For Craft 🌠 ","TELE AND PRESS E To Collect",{"Planet 1","Planet 2","Planet 3","Planet 4","Planet 5","Planet 6","Planet 7","Planet 8"},function(v15)v41=v36[v15];print(v15);end);v40:NewButton("🌎Teleport Planet Select🌍","Teleport selected",function()if v41 then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame=CFrame.new(v41);end end);v40:NewButton("💎Craft Space Amulet💎","Craft AMULET",function()local v96="Space";local v97=game:GetService("ReplicatedStorage").Events.CraftAmulet;v97:FireServer(v96);end);local v40=v39:NewSection("🌊  Craft Amulet Aqua 🌊  ");local v36={["oysters 1"]=Vector3.new( -2013,5, -222),["oysters 2"]=Vector3.new( -2185,5, -263),["oysters 3"]=Vector3.new( -2122,26, -426),["oysters 4"]=Vector3.new( -2100,5, -433),["oysters 5"]=Vector3.new( -1684,54, -428),["oysters 6"]=Vector3.new( -1995,5, -444),["oysters 7"]=Vector3.new( -1716,90, -375),["oysters 8"]=Vector3.new( -2112,35, -183)};local v42;v40:NewDropdown("🌠 Select Oyster Tele For Craft 🌠 ","TELE AND PRESS E To Collect",{"oysters 1","oysters 2","oysters 3","oysters 4","oysters 5","oysters 6","oysters 7","oysters 8"},function(v15)v42=v36[v15];print(v15);end);v40:NewButton("🐌Teleport Aqua Select🐌","Teleport selected",function()if v42 then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame=CFrame.new(v42);end end);v40:NewButton("💎Craft Aqua Amulet💎","Aqua amulet craft",function()local v99="Aqua";local v100=game:GetService("ReplicatedStorage").Events.CraftAmulet;v100:FireServer(v99);end);local v40=v39:NewSection(" 🌴 Craft Amulet Junggle 🌴  ");local v36={["Flower 1"]=Vector3.new( -172,9, -2630),["Flower 2"]=Vector3.new( -491,34,959),["Flower 3"]=Vector3.new( -494,14, -2984),["Flower 4"]=Vector3.new(533,53, -766),["Flower 5"]=Vector3.new( -581,33, -1293),["Flower 6"]=Vector3.new(30,15,724),["Flower 7"]=Vector3.new(182,11, -34),["Flower 8"]=Vector3.new( -1422, -5, -1640)};local v43;v40:NewDropdown("🌻 Select FLower Tele For Craft 🌻 ","TELE AND PRESS E To Collect",{"Flower 1","Flower 2","Flower 3","Flower 4","Flower 5","Flower 6","Flower 7","Flower 8"},function(v15)v43=v36[v15];print(v15);end);v40:NewButton("🔮Teleport Fantasy Select 🔮","Teleport selected",function()if v43 then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame=CFrame.new(v43);end end);v40:NewButton("💎Craft Fantasy Amulet💎","Aqua amulet craft",function()local v102="Fantasy";local v103=game:GetService("ReplicatedStorage").Events.CraftAmulet;v103:FireServer(v102);end);local v44=v1:NewTab("Credits");local v45=v44:NewSection("Credits");v45:NewLabel("Created by 'huythanh'");end;if (game.PlaceId==8540346411) then Script();end
+game:GetService("StarterGui"):SetCore("SendNotification",{
+	Title = "YUTO Hub", -- Required
+	Text = "Loading HUB", -- Required
+	Icon = "rbxassetid://12699767780" -- Optional
+})
+wait(0.1)
+local Yutohub = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Binintrozza/GUI-SCRIPT/main/GUI_NEW.lua')))()
+
+if game.PlaceId == 8540346411 then
+    local Window = Yutohub:MakeWindow({Name = "YUTO HUB      [🐉UPDATE!] Rebirth Champions X  ", HidePremium = false, SaveConfig = true, IntroEnabled = false, IntroText = "YUTO HUB", IntroIcon = "rbxassetid://12699767780",Intro ="rbxassetid://7054195524" , ConfigFolder = "Yuto hub"})
+    local MainToggleEnabled = false
+    local Main = Window:MakeTab({
+        Name = "💎 MAIN 💎",
+        Icon = "rbxassetid://12699767780",
+        PremiumOnly = false
+    })
+    local Section = Main:AddSection({
+        Name = "Main"
+    })
+    Main:AddParagraph("👆 Auto Click For Auto farm 👆 ","Use for auto farm ")
+    Main:AddToggle({
+        Name = "Auto click",
+        Default = false,
+        Callback = function(toggleState)
+            MainToggleEnabled = toggleState
+            while MainToggleEnabled do -- loop while the toggle is enabled
+                local Event = game:GetService("ReplicatedStorage").Events.Click3
+                Event:FireServer()
+                wait(0.1) -- wait for a short time before repeating
+            end
+        end
+    })
+    local Event = Window:MakeTab({
+        Name = "🍀 St.Patrick's Event 🍀",
+        Icon = "rbxassetid://12699767780",
+        PremiumOnly = false
+    })
+    local CloverToggleEnabled = false
+    local Section = Event:AddSection({
+        Name = "🍀 AUTO Collect Clover 🍀 "
+    })
+    
+-- Hàm lấy danh sách part của clover
+local function GetCloverParts()
+    local parts = {}
+    for _, CloverModel in pairs(game.Workspace.Scripts.CollectClovers.Storage:GetChildren()) do
+        if CloverModel:IsA("Model") and CloverModel.Name == "Clover" then
+            for _, part in pairs(CloverModel:GetDescendants()) do
+                if part:IsA("MeshPart") then
+                    table.insert(parts, part)
+                end
+            end
+        end
+    end
+    return parts
+end
+
+-- Toggle auto collect clover
+local Event = Window:MakeTab({
+    Name = "🍀 St.Patrick's Event 🍀",
+    Icon = "rbxassetid://12699767780",
+    PremiumOnly = false
+})
+local CloverToggleEnabled = false
+local Section = Event:AddSection({
+    Name = "🍀 AUTO Collect Clover 🍀 "
+})
+
+
+-- Hàm lấy danh sách part của clover
+local function GetCloverParts()
+local parts = {}
+for _, CloverModel in pairs(game.Workspace.Scripts.CollectClovers.Storage:GetChildren()) do
+    if CloverModel:IsA("Model") and CloverModel.Name == "Clover" then
+        for _, part in pairs(CloverModel:GetDescendants()) do
+            if part:IsA("MeshPart") then
+                table.insert(parts, part)
+            end
+        end
+    end
+end
+return parts
+end
+local CloverParts = GetCloverParts()
+if CloverParts then
+for _, MeshPart in pairs(CloverParts) do
+    firetouchinterest(game.Players.LocalPlayer.Character.Head, MeshPart, 0)
+end
+wait(1) -- Thời gian chờ giữa mỗi lần touch interest lại các Part của Clover
+else
+print("Error: Lua version not compatible")
+end
+
+-- Toggle auto collect clover
+local CloverToggleEnabled = false
+Event:AddToggle({
+Name = "🍀 AUTO Collect Clover 🍀 ",
+Default = false,
+Callback = function(toggleState)
+    CloverToggleEnabled = toggleState
+    while CloverToggleEnabled do 
+        local CloverParts = GetCloverParts()
+        for _, MeshPart in pairs(CloverParts) do
+            firetouchinterest(game.Players.LocalPlayer.Character.Head, MeshPart, 0)
+        end
+        wait(1) -- Thời gian chờ giữa mỗi lần touch interest lại các Part của Clover
+    end
+end
+})
+
+
+    
+    
+    
+    else
+    Yutohub:MakeNotification({
+        Name = "DONT SUPPORT THIS GAME",
+        Content = "Check STATUS ON DISCORD SEVER ( YUTO HUB | COMMUNITY )",
+        Image = "rbxassetid://12699767780",
+        Time = 10
+    })
+    
+
+    Yutohub:Init()
+end
