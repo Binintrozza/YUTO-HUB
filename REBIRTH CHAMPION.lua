@@ -41,31 +41,35 @@ if game.PlaceId == 8540346411 then
     })
     
 -- Hàm lấy danh sách part của clover
-Event:AddToggle({
-    Name = "🍀 AUTO PICKUP Clover 🍀 ",
-    Default = false,
-    Callback = function(toggleState)
-    CloverToggleEnabled = toggleState
-    while CloverToggleEnabled do
-    -- Tương tác với tất cả các clover đang có
-    for i, v in pairs(game:GetService("Workspace").Scripts.CollectClovers.Storage.Clover:GetChildren()) do
-    if v:IsA("MeshPart") then
-    firetouchinterest(game.Players.LocalPlayer.Character.Head, v, 0)
-    end
-    end
-            -- Kiểm tra nếu có clover mới spawn ra
-            while game:GetService("Workspace").Scripts.CollectClovers.Storage.Clover.ChildAdded:wait() do
-                local newClovers = game:GetService("Workspace").Scripts.CollectClovers.Storage.Clover:GetChildren()
-                -- Tương tác với tất cả clover mới spawn ra
-                for i, newC in pairs(newClovers) do
-                    if newC:IsA("MeshPart") then
-                        firetouchinterest(game.Players.LocalPlayer.Character.Head, newC, 0)
-                    end
+local function GetCloverParts()
+    local parts = {}
+    for _, CloverModel in pairs(game.Workspace.Scripts.CollectClovers.Storage:GetChildren()) do
+        if CloverModel:IsA("Model") and CloverModel.Name == "Clover" then
+            for _, part in pairs(CloverModel:GetDescendants()) do
+                if part:IsA("MeshPart") then
+                    table.insert(parts, part)
                 end
             end
         end
     end
-})    
+    return parts
+end
+
+
+-- Toggle auto collect clover
+local CloverToggleEnabled = false
+Event:AddButton({
+    Name = "🍀 AUTO Collect Clover 🍀 ",
+    Default = false,
+    Callback = function()
+            local CloverParts = GetCloverParts()
+            for _, MeshPart in pairs(CloverParts) do
+                firetouchinterest(game.Players.LocalPlayer.Character.Head, MeshPart, 0)
+            end
+            wait(1) -- Thời gian chờ giữa mỗi lần touch interest lại các Part của Clover
+    end
+})
+
 
     
     
