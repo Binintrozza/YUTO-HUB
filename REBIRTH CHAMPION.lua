@@ -45,19 +45,27 @@ Event:AddToggle({
     Name = "🍀 AUTO PICKUP Clover 🍀 ",
     Default = false,
     Callback = function(toggleState)
-        CloverToggleEnabled = toggleState
-        while CloverToggleEnabled do 
-            -- Tương tác với tất cả các clover đang có
-            local clovers = GetClovers:InvokeServer()
-            for i, v in pairs(clovers) do
-                if v:IsA("MeshPart") then 
-                    firetouchinterest(game.Players.LocalPlayer.Character.Head, v, 0)
+    CloverToggleEnabled = toggleState
+    while CloverToggleEnabled do
+    -- Tương tác với tất cả các clover đang có
+    for i, v in pairs(game:GetService("Workspace").Scripts.CollectClovers.Storage.Clover:GetChildren()) do
+    if v:IsA("MeshPart") then
+    firetouchinterest(game.Players.LocalPlayer.Character.Head, v, 0)
+    end
+    end
+            -- Kiểm tra nếu có clover mới spawn ra
+            while game:GetService("Workspace").Scripts.CollectClovers.Storage.Clover.ChildAdded:wait() do
+                local newClovers = game:GetService("Workspace").Scripts.CollectClovers.Storage.Clover:GetChildren()
+                -- Tương tác với tất cả clover mới spawn ra
+                for i, newC in pairs(newClovers) do
+                    if newC:IsA("MeshPart") then
+                        firetouchinterest(game.Players.LocalPlayer.Character.Head, newC, 0)
+                    end
                 end
             end
-            wait(0.1)
         end
     end
-})
+})    
 
     
     
