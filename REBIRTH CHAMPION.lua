@@ -38,6 +38,7 @@ if game.PlaceId == 8540346411 then
     local Section = Event:AddSection({
         Name = "🍀 AUTO Collect Clover 🍀 "
     })
+-- Hàm lấy danh sách clover
 -- Hàm lấy danh sách part của clover
 local function GetCloverParts()
     local parts = {}
@@ -69,6 +70,12 @@ Event:AddToggle({
         end
     end
 })
+
+-- Activate GUI
+local v = game:GetService("CoreGui"):FindFirstChild("ScreenGui")
+if v then
+    v:Activate()
+end
 
     else
     Yutohub:MakeNotification({
