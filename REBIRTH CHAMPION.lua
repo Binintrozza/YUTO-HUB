@@ -38,45 +38,30 @@ if game.PlaceId == 8540346411 then
     local Section = Event:AddSection({
         Name = "🍀 AUTO Collect Clover 🍀 "
     })
--- Hàm lấy danh sách clover
--- Hàm lấy danh sách part của clover
-local function GetCloverParts()
-    local parts = {}
-    for _, CloverModel in pairs(game.Workspace.Scripts.CollectClovers.Storage:GetChildren()) do
-        if CloverModel:IsA("Model") and CloverModel.Name == "Clover" then
-            for _, part in pairs(CloverModel:GetDescendants()) do
-                if part:IsA("MeshPart") then
-                    table.insert(parts, part)
-                end
-            end
-        end
-    end
-    return parts
-end
-
 -- Toggle auto collect clover
-local CloverToggleEnabled = false
+local EventToggleEnabled = false
+local rootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
 Event:AddToggle({
     Name = "🍀 AUTO Collect Clover 🍀 ",
     Default = false,
     Callback = function(toggleState)
-        CloverToggleEnabled = toggleState
-        while CloverToggleEnabled do 
-            local CloverParts = GetCloverParts()
-            for _, MeshPart in pairs(CloverParts) do
-                firetouchinterest(game.Players.LocalPlayer.Character.Head, MeshPart, 0)
+        EventToggleEnabled = toggleState
+        while EventToggleEnabled do
+            for _, v in pairs(game:GetService("Workspace").Scripts.CollectClovers.Points:GetChildren()) do
+                if not EventToggleEnabled then -- Kiểm tra trạng thái toggle
+                    break -- Dừng vòng lặp nếu toggle đã bị tắt
+                end
+                if v:IsA("Part") then
+                    rootPart.CFrame = v.CFrame
+                    wait(0.2)
+                end
             end
-            wait(1) -- Thời gian chờ giữa mỗi lần touch interest lại các Part của Clover
         end
     end
 })
 
--- Activate GUI
-local v = game:GetService("CoreGui"):FindFirstChild("ScreenGui")
-if v then
-    v:Activate()
-end
 
+ 
     else
     Yutohub:MakeNotification({
         Name = "DONT SUPPORT THIS GAME",
