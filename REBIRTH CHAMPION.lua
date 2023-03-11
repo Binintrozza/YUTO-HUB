@@ -81,15 +81,6 @@ for _, CloverModel in pairs(game.Workspace.Scripts.CollectClovers.Storage:GetChi
 end
 return parts
 end
-local CloverParts = GetCloverParts()
-if CloverParts then
-for _, MeshPart in pairs(CloverParts) do
-    firetouchinterest(game.Players.LocalPlayer.Character.Head, MeshPart, 0)
-end
-wait(1) -- Thời gian chờ giữa mỗi lần touch interest lại các Part của Clover
-else
-print("Error: Lua version not compatible")
-end
 
 -- Toggle auto collect clover
 local CloverToggleEnabled = false
