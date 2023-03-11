@@ -41,9 +41,6 @@ if game.PlaceId == 8540346411 then
     })
     
 -- Hàm lấy danh sách part của clover
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local GetClovers = ReplicatedStorage:WaitForChild("GetClovers")
-
 Event:AddToggle({
     Name = "🍀 AUTO PICKUP Clover 🍀 ",
     Default = false,
