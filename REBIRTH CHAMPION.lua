@@ -7,7 +7,7 @@ wait(0.1)
 local Yutohub = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Binintrozza/GUI-SCRIPT/main/GUI_NEW.lua')))()
 
 if game.PlaceId == 8540346411 then
-    local Window = Yutohub:MakeWindow({Name = "YUTO HUB      [🐉UPDATE!] Rebirth Champions X  ", HidePremium = false, SaveConfig = true, IntroEnabled = false, IntroText = "YUTO HUB", IntroIcon = "rbxassetid://12699767780",Intro ="rbxassetid://7054195524" , ConfigFolder = "Yuto hub"})
+    local Window = Yutohub:MakeWindow({Name = "YUTO HUB      [🍀EVENT!] Rebirth Champions X", HidePremium = false, SaveConfig = true, IntroEnabled = false, IntroText = "YUTO HUB", IntroIcon = "rbxassetid://12699767780",Intro ="rbxassetid://7054195524" , ConfigFolder = "Yuto hub"})
     local MainToggleEnabled = false
     local Main = Window:MakeTab({
         Name = "💎 MAIN 💎",
@@ -35,12 +35,10 @@ if game.PlaceId == 8540346411 then
         Icon = "rbxassetid://12699767780",
         PremiumOnly = false
     })
-    local CloverToggleEnabled = false
     local Section = Event:AddSection({
         Name = "🍀 AUTO Collect Clover 🍀 "
     })
-    
--- Hàm lấy danh sách part của clover
+-- Toggle auto collect clover
 -- Hàm lấy danh sách part của clover
 local function GetCloverParts()
     local parts = {}
@@ -57,16 +55,15 @@ local function GetCloverParts()
 end
 
 -- Toggle auto collect clover
-local CloverToggleEnabled = false
+_G.CloverToggleEnabled = false
 Event:AddToggle({
     Name = "🍀 AUTO Collect Clover 🍀 ",
     Default = false,
     Callback = function(toggleState)
-        CloverToggleEnabled = toggleState
-        while CloverToggleEnabled do 
+        _G.CloverToggleEnabled = toggleState
+        while _G.CloverToggleEnabled do 
             local CloverParts = GetCloverParts()
             for _, MeshPart in pairs(CloverParts) do
-                print("Touching", MeshPart.Name) -- In ra thông báo để kiểm tra lỗi
                 firetouchinterest(game.Players.LocalPlayer.Character.Head, MeshPart, 0)
             end
             wait(1) -- Thời gian chờ giữa mỗi lần touch interest lại các Part của Clover
