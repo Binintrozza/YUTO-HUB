@@ -53,7 +53,7 @@ Event:AddToggle({
                 end
                 if v:IsA("Part") then
                     rootPart.CFrame = v.CFrame
-                    wait(0.2)
+                    wait(0.1)
                 end
             end
         end
