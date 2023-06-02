@@ -7,7 +7,7 @@ game:GetService("StarterGui"):SetCore("SendNotification",{
 wait(0.1)
 
 local Yutohub = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Binintrozza/YUTO-HUB/main/main.lua')))()
-if game.PlaceId == 13379838093 then
+if game.PlaceId == 8425128940 then
     local MarketplaceService = game:GetService("MarketplaceService")
 local placeName = MarketplaceService:GetProductInfo(game.PlaceId).Name
     local Window = Yutohub:MakeWindow({Name = "YUTO HUB      "..placeName, HidePremium = false, SaveConfig = true, IntroEnabled = false, IntroText = "YUTO HUB", IntroIcon = "rbxassetid://12699767780",Intro ="rbxassetid://7054195524" , ConfigFolder = "Yuto hub"})
