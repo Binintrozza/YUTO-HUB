@@ -10,7 +10,7 @@ local Yutohub = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Bini
 if game.PlaceId == 8425128940 then
     local MarketplaceService = game:GetService("MarketplaceService")
 local placeName = MarketplaceService:GetProductInfo(game.PlaceId).Name
-    local Window = Yutohub:MakeWindow({Name = "YUTO HUB      "..placeName, HidePremium = false, SaveConfig = true, IntroEnabled = false, IntroText = "YUTO HUB", IntroIcon = "rbxassetid://12699767780",Intro ="rbxassetid://7054195524" , ConfigFolder = "Yuto hub"})
+    local Window = Yutohub:MakeWindow({Name = "YUTO HUB      ", HidePremium = false, SaveConfig = false, IntroEnabled = false, IntroText = "YUTO HUB", IntroIcon = "rbxassetid://12699767780",Intro ="rbxassetid://7054195524" , ConfigFolder = "Yuto hub"})
     local MainToggleEnabled = false
     local Main = Window:MakeTab({
         Name = "MAIN ",
