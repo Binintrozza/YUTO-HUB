@@ -19,6 +19,6 @@ function KeySystemUI.New(settings)
         DiscordInvite = "Dg5nr8CrVV"
 	}, settings or {})
     print(settings.ApplicationName, settings.Name, settings.Info, settings.DiscordInvite)
-end
-
+    
 return KeySystemUI
+end
