@@ -1,1 +1,24 @@
+print("On Fire")
+local KeySystemUI = { Finished = true }
 
+local function Validate(Values, options)
+    for i,v in pairs(Values) do
+        if options[i] == nil then
+            options[i] = v
+        end
+    end
+
+    return options
+end
+
+function KeySystemUI.New(settings) 
+    settings = Validate({
+        ApplicationName = "AppleHub",
+        Name = "APPLE HUB",
+        Info = "Help Me To Paying Hospital Fees, Thank You Very Much.",
+        DiscordInvite = "Dg5nr8CrVV"
+	}, settings or {})
+    print(settings.ApplicationName, settings.Name, settings.Info, settings.DiscordInvite)
+end
+
+return KeySystemUI
