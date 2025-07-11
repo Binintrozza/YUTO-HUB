@@ -352,6 +352,7 @@ s=s:gsub("[^%w%-_%.]","")
 return s
 end
 
+o=o or"Temp"
 k=SanitizeFilename(k)
 
 local s=h("Frame",{
@@ -660,7 +661,9 @@ ImageColor3="Icon",
 })
 end
 
-local p=e("TextBox",{
+local p=j~="Input"
+
+local q=e("TextBox",{
 BackgroundTransparency=1,
 TextSize=16,
 FontFace=Font.new(d.Font,Enum.FontWeight.Regular),
@@ -668,8 +671,8 @@ Size=UDim2.new(1,o and-29 or 0,1,0),
 PlaceholderText=g,
 ClearTextOnFocus=false,
 ClipsDescendants=true,
-MultiLine=j=="Input"and false or true,
-TextWrapped=j=="Input"and false or true,
+TextWrapped=p,
+MultiLine=p,
 TextXAlignment="Left",
 TextYAlignment=j=="Input"and"Center"or"Top",
 
@@ -679,7 +682,7 @@ TextColor3="Text",
 },
 })
 
-local q=e("Frame",{
+local r=e("Frame",{
 Size=UDim2.new(1,0,0,42),
 Parent=i,
 BackgroundTransparency=1
@@ -721,7 +724,7 @@ VerticalAlignment=j=="Input"and"Center"or"Top",
 HorizontalAlignment="Left",
 }),
 o,
-p,
+q,
 })
 })
 })
@@ -735,13 +738,13 @@ p,
 
 
 
-d.AddSignal(p.FocusLost,function()
+d.AddSignal(q.FocusLost,function()
 if k then
-d.SafeCallback(k,p.Text)
+d.SafeCallback(k,q.Text)
 end
 end)
 
-return q
+return r
 end
 
 
@@ -791,7 +794,7 @@ end
 h.UIElements.Main=d("Frame",{
 
 ThemeTag={
-BackgroundColor3="Accent",
+BackgroundColor3="Dialog",
 },
 AutomaticSize="XY",
 BackgroundTransparency=1,
@@ -815,7 +818,7 @@ Position=UDim2.new(0.5,0,0.5,0),
 AnchorPoint=Vector2.new(0.5,0.5),
 AutomaticSize="XY",
 ThemeTag={
-ImageColor3="Background"
+ImageColor3="Dialog"
 },
 ZIndex=9999,
 },{
@@ -1965,10 +1968,15 @@ end
 }
 
 function d.Init(e,f)
+if not f.Folder then
+warn"[ WindUI.ConfigManager ] Window.Folder is not specified."
+
+return false
+end
+
 d.Window=f
 d.Folder=f.Folder
-
-d.Path="WindUI/"..d.Folder.."/config/"
+d.Path="WindUI/"..tostring(d.Folder).."/config/"
 
 return d
 end
@@ -3101,7 +3109,7 @@ Desc=k.Desc or nil,
 Type=k.Type or"Input",
 Locked=k.Locked or false,
 InputIcon=k.InputIcon or false,
-PlaceholderText=k.Placeholder or"Enter Text...",
+Placeholder=k.Placeholder or"Enter Text...",
 Value=k.Value or"",
 Callback=k.Callback or function()end,
 ClearTextOnFocus=k.ClearTextOnFocus or false,
@@ -3118,7 +3126,7 @@ TextOffset=0,
 Hover=false,
 }
 
-local p=i(n.PlaceholderText,n.InputIcon,n.InputFrame.UIElements.Container,n.Type,function(p)
+local p=i(n.Placeholder,n.InputIcon,n.InputFrame.UIElements.Container,n.Type,function(p)
 n:Set(p)
 end)
 p.Size=UDim2.new(1,0,0,n.Type=="Input"and 42 or 148)
@@ -3145,6 +3153,10 @@ b.SafeCallback(n.Callback,r)
 p.Frame.Frame.TextBox.Text=r
 n.Value=r
 end
+end
+function n.SetPlaceholder(q,r)
+p.Frame.Frame.TextBox.PlaceholderText=r
+n.Placeholder=r
 end
 
 n:Set(n.Value)
@@ -3369,7 +3381,7 @@ if not v:IsA"UIListLayout"then
 v:Destroy()
 end
 end
-q.Values = t -- I added this
+q.Values = t
 q.Tabs={}
 
 for w,x in next,t do
@@ -3455,17 +3467,17 @@ end
 
 h.AddSignal(y.UIElements.TabItem.MouseButton1Click,function()
 if q.Multi then
-    if not y.Selected then
-        y.Selected=true
-        j(y.UIElements.TabItem,0.1,{BackgroundTransparency=.93}):Play()
-        j(y.UIElements.TabItem.ImageLabel,0.1,{ImageTransparency=.1}):Play()
-        j(y.UIElements.TabItem.TextLabel,0.1,{Position=UDim2.new(0,18+n.TabPadding,0.5,0),TextTransparency=0}):Play()
-        table.insert(q.Value,y.Name)
-    else
+if not y.Selected then
+y.Selected=true
+j(y.UIElements.TabItem,0.1,{BackgroundTransparency=.93}):Play()
+j(y.UIElements.TabItem.ImageLabel,0.1,{ImageTransparency=.1}):Play()
+j(y.UIElements.TabItem.TextLabel,0.1,{Position=UDim2.new(0,18+n.TabPadding,0.5,0),TextTransparency=0}):Play()
+table.insert(q.Value,y.Name)
+else
 if not q.AllowNone and#q.Value==1 then
-    return
+return
 end
-    y.Selected=false
+y.Selected=false
 j(y.UIElements.TabItem,0.1,{BackgroundTransparency=1}):Play()
 j(y.UIElements.TabItem.ImageLabel,0.1,{ImageTransparency=1}):Play()
 j(y.UIElements.TabItem.TextLabel,0.1,{Position=UDim2.new(0,0,0.5,0),TextTransparency=.4}):Play()
@@ -3516,6 +3528,13 @@ q:Refresh(q.Values)
 function q.Select(s,t)
 if t then
 q.Value=t
+else
+if q.Multi then
+q.Value={}
+else
+q.Value=nil
+
+end
 end
 q:Refresh(q.Values)
 end
@@ -3524,6 +3543,7 @@ end
 RecalculateListSize()
 
 function q.Open(s)
+if r then
 q.UIElements.MenuCanvas.Visible=true
 q.UIElements.MenuCanvas.Active=true
 q.UIElements.Menu.Size=UDim2.new(
@@ -3547,6 +3567,7 @@ j(q.UIElements.MenuCanvas,.15,{GroupTransparency=0}):Play()
 
 UpdatePosition()
 end
+end
 function q.Close(s)
 q.Opened=false
 
@@ -3564,9 +3585,7 @@ q.UIElements.MenuCanvas.Active=false
 end
 
 h.AddSignal(q.UIElements.Dropdown.MouseButton1Click,function()
-if r then
 q:Open()
-end
 end)
 
 h.AddSignal(b.InputBegan,function(s)
@@ -4637,12 +4656,10 @@ end
 b.AddSignal(ac.UIElements.Colorpicker.MouseButton1Click,function()
 if s then
 r:Colorpicker(ac,function(t,v)
-if s then
 ac:Update(t,v)
 ac.Default=t
 ac.Transparency=v
 b.SafeCallback(ac.Callback,t,v)
-end
 end).ColorpickerFrame:Open()
 end
 end)
@@ -4856,7 +4873,7 @@ k.__type,
 true,
 k.IconThemed
 )
-r.Size=UDim2.new(0,18,0,18)
+r.Size=UDim2.new(0,16,0,16)
 r.Parent=k.UIElements.Main.Frame
 r.ImageLabel.ImageTransparency=not k.Locked and 0 or.7
 k.UIElements.Main.Frame.TextLabel.Size=UDim2.new(1,-30,0,0)
@@ -4874,7 +4891,7 @@ k.__type,
 true,
 k.IconThemed
 )
-s.Size=UDim2.new(0,18,0,18)
+s.Size=UDim2.new(0,16,0,16)
 s.ImageLabel.ImageTransparency=not k.Locked and 0 or.7
 q=-30
 
@@ -5093,7 +5110,7 @@ local C=a.load'm'(A)
 B.ParagraphFrame=C
 if A.Buttons and#A.Buttons>0 then
 local D=ac("Frame",{
-Size=UDim2.new(0,0,0,38),
+Size=UDim2.new(1,0,0,38),
 BackgroundTransparency=1,
 AutomaticSize="Y",
 Parent=C.UIElements.Container
@@ -5107,8 +5124,8 @@ FillDirection="Vertical",
 
 for E,F in next,A.Buttons do
 local G=e(F.Title,F.Icon,F.Callback,"White",D)
-G.Size=UDim2.new(0,0,0,38)
-G.AutomaticSize="X"
+G.Size=UDim2.new(1,0,0,38)
+
 end
 end
 
@@ -5219,9 +5236,9 @@ i.SelectedTab=k
 for n,o in next,i.Tabs do
 if not o.Locked then
 b(o.UIElements.Main,0.15,{ImageTransparency=1}):Play()
-b(o.UIElements.Main.Frame.TextLabel,0.15,{TextTransparency=0.45}):Play()
+b(o.UIElements.Main.Frame.TextLabel,0.15,{TextTransparency=0.3}):Play()
 if o.UIElements.Icon then
-b(o.UIElements.Icon.ImageLabel,0.15,{ImageTransparency=0.5}):Play()
+b(o.UIElements.Icon.ImageLabel,0.15,{ImageTransparency=0.4}):Play()
 end
 o.Selected=false
 end
@@ -5229,7 +5246,7 @@ end
 b(i.Tabs[k].UIElements.Main,0.15,{ImageTransparency=0.95}):Play()
 b(i.Tabs[k].UIElements.Main.Frame.TextLabel,0.15,{TextTransparency=0}):Play()
 if i.Tabs[k].UIElements.Icon then
-b(i.Tabs[k].UIElements.Icon.ImageLabel,0.15,{ImageTransparency=0.15}):Play()
+b(i.Tabs[k].UIElements.Icon.ImageLabel,0.15,{ImageTransparency=0.1}):Play()
 end
 i.Tabs[k].Selected=true
 
@@ -5265,7 +5282,7 @@ IconThemed=g.IconThemed,
 Opened=g.Opened or false,
 
 HeaderSize=42,
-IconSize=20,
+IconSize=18,
 
 Expandable=false,
 }
@@ -5330,7 +5347,7 @@ or(-k.IconSize-10),
 ThemeTag={
 TextColor3="Text",
 },
-FontFace=Font.new(ab.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(ab.Font,Enum.FontWeight.SemiBold),
 TextSize=14,
 BackgroundTransparency=1,
 TextTransparency=.7,
@@ -5952,6 +5969,7 @@ Author=o.Author,
 Icon=o.Icon,
 IconThemed=o.IconThemed,
 Folder=o.Folder,
+Resizable=o.Resizable,
 Background=o.Background,
 BackgroundImageTransparency=o.BackgroundImageTransparency or 0,
 User=o.User or{},
@@ -5989,6 +6007,9 @@ TopBarButtons={},
 
 if p.HideSearchBar~=false then
 p.HideSearchBar=true
+end
+if p.Resizable~=false then
+p.Resizable=true
 end
 
 if p.Folder then
@@ -6744,8 +6765,9 @@ J=p.UIElements.Main.Size
 
 p.CanResize=false
 else
-
+if p.Resizable then
 p.CanResize=true
+end
 end
 
 g(p.UIElements.Main,0.45,{Size=L and J or UDim2.new(1,-20,1,-72)},Enum.EasingStyle.Quint,Enum.EasingDirection.Out):Play()
@@ -6816,7 +6838,9 @@ g(E,.45,{Size=UDim2.new(0,200,0,4),ImageTransparency=.8},Enum.EasingStyle.Expone
 g(r.ImageLabel,.45,{ImageTransparency=.8},Enum.EasingStyle.Exponential,Enum.EasingDirection.Out):Play()
 task.wait(.45)
 G:Set(true)
+if p.Resizable then
 p.CanResize=true
+end
 end)
 
 
@@ -7021,6 +7045,10 @@ function p.Section(N,O)
 return L.New(O,p.UIElements.SideBar.Frame,p.Folder,o.WindUI.UIScale)
 end
 
+function p.IsResizable(N,O)
+p.Resizable=O
+p.CanResize=O
+end
 
 function p.Divider(N)
 local O=e("Frame",{
@@ -7329,7 +7357,9 @@ if ae then return end
 ad.new(p.TabModule,p.UIElements.Main,function()
 
 ae=false
+if p.Resizable then
 p.CanResize=true
+end
 
 g(t,0.1,{ImageTransparency=1}):Play()
 t.Active=false
